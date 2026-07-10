@@ -21,6 +21,10 @@ personality = st.selectbox(
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if st.sidebar.button("Clear Chat History"):
+    st.session_state.messages = []
+    st.rerun()
+
 # chat history
 show_history = st.sidebar.checkbox("Show Previous Chats")
 
