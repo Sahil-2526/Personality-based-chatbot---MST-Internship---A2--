@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-st.title("🤖 PERSONALITY BASED CHATBOT")
+st.title("PERSONALITY BASED CHATBOT")
 
 # Personality
 personality = st.selectbox(
@@ -22,7 +22,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # chat history
-show_history = st.sidebar.checkbox("📜 Show Previous Chats")
+show_history = st.sidebar.checkbox("Show Previous Chats")
 
 if show_history:
     st.sidebar.subheader("Previous Chats")
@@ -31,7 +31,7 @@ if show_history:
         st.sidebar.write("No chats yet.")
     else:
         for msg in st.session_state.messages:
-            role = "🧑 You" if msg["role"] == "user" else "🤖 Bot"
+            role = "You" if msg["role"] == "user" else "ChatBot"
             personality_used = msg.get("personality", "Unknown")
             st.sidebar.markdown(
                 f"""
