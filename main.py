@@ -18,6 +18,17 @@ personality = st.selectbox(
     ]
 )
 
+# response length
+response_length = st.selectbox(
+    "Response Length",
+    ["Short", "Medium", "Detailed"]
+)
+response_value = {
+    "Short": "Maximum 2-3 sentences",
+    "Medium": "",
+    "Detailed": "",
+}
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -70,9 +81,8 @@ if user_msg:
     ai_instructions = f"""
     You are acting as {personality}.
     Stay completely in character throughout the conversation.
-    Previous conversation:
-    {conversation}
-    Reply to the latest user message.
+    Response length: {response_value.get(response_length)}
+    Reply to the user message : {user_msg}
     """
 
     with st.spinner("Connecting to the multiverse..."):
