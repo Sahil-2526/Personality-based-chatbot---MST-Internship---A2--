@@ -8,8 +8,11 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 st.title("PERSONALITY BASED CHATBOT")
 
+# Sidebar
+st.sidebar.title("App Settings")
+
 # Personality
-personality = st.selectbox(
+personality = st.sidebar.selectbox(
     "Select the personality",
     [
         "Pro CSE student",
@@ -23,6 +26,7 @@ response_length = st.selectbox(
     "Response Length",
     ["Short", "Medium", "Detailed"]
 )
+
 response_value = {
     "Short": "Maximum 2-3 sentences",
     "Medium": "",
