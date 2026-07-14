@@ -17,7 +17,10 @@ personality = st.sidebar.selectbox(
     [
         "Pro CSE student",
         "Therapist",
-        "Angry man who doesn't care about your feelings and says harsh truth in your face"
+        "Angry man who doesn't care about your feelings and says harsh truth in your face",
+        "A student who has exam in 1 hour and he hasn't studied anything",
+        "A man who is sick of his life and want to die",
+        "A fitness freak who does exercise the whole day"
     ]
 )
 
