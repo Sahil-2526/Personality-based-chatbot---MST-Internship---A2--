@@ -5,16 +5,24 @@ A Streamlit-based AI chatbot that generates responses according to the personali
 ## Features
 
 * Multiple built-in personalities
-  * Pro CSE Student
-  * Therapist
-  * Angry Truth Teller
+  * 😎 Pro CSE Student
+  * 🤔 Therapist
+  * 😡 Angry Truth Teller
+  * 😱 Panicked Student Before an Exam
+  * 😭 Hopeless Man
+  * 💪 Fitness Freak
 
 * Personality-aware responses
+* Separate conversation history for each personality
+* Intensity level control (1–10)
 * Response length control (Short, Medium, Detailed)
+* Dynamic personality avatars
 * Persistent chat history during the session
-* Sidebar for viewing previous chats
-* Clear chat history option
-* More features will be added in future ...
+* Sidebar for viewing previous chats from all personalities
+* Clear all chat history option
+* Context-aware responses using conversation memory
+* Fast responses powered by Gemini 2.5 Flash
+* Simple and responsive Streamlit UI
 
 ## Tech Stack
 
@@ -36,3 +44,7 @@ You can obtain an API key from Google AI Studio.
 ```bash
 streamlit run main.py
 ```
+
+### Result
+
+<img width="1919" height="1076" alt="Project Result" src="Result.png" />
