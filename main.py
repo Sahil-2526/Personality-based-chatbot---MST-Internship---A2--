@@ -24,7 +24,16 @@ personality = st.sidebar.selectbox(
     ]
 )
 
-# response length
+# Intensity
+intensity = st.sidebar.slider("Intensity Level", min_value=1, max_value=10, value=5 )
+if intensity <= 3:
+    behaviour = "Act subtly. Show only slight hints of the selected personality."
+elif intensity <= 7:
+    behaviour = "Clearly act as the selected personality while keeping the conversation natural."
+else:
+    behaviour = "Fully embrace the selected personality and never break character."
+
+# Response length
 response_length = st.selectbox(
     "Response Length",
     ["Short", "Medium", "Detailed"]
@@ -43,7 +52,7 @@ if st.sidebar.button("Clear Chat History"):
     st.session_state.messages = []
     st.rerun()
 
-# chat history
+# Chat history
 show_history = st.sidebar.checkbox("Show Previous Chats")
 
 if show_history:
@@ -75,7 +84,7 @@ if user_msg:
         }
     )
 
-    # convo history
+    # Convo history
     conversation = ""
     for msg in st.session_state.messages:
         personality_used = msg.get("personality", "Unknown")
@@ -84,12 +93,14 @@ if user_msg:
             f"{msg['role']}: {msg['content']}\n"
         )
 
-    # prompt
+    # Prompt
     ai_instructions = f"""
-    You are acting as {personality}.
-    Stay completely in character throughout the conversation.
-    Response length: {response_value.get(response_length)}
-    Reply to the user message : {user_msg}
+        You are acting as {personality}.
+        Stay completely in character throughout the conversation.
+        Behaviour : {behaviour}.
+        Response length: {response_value.get(response_length)}
+        Reply to the user's message:
+        {user_msg}
     """
 
     with st.spinner("Connecting to the multiverse..."):
@@ -100,7 +111,7 @@ if user_msg:
 
     reply = response.text
 
-    # store response
+    # Store response
     st.session_state.messages.append(
         {
             "role": "assistant",
