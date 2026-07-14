@@ -23,6 +23,20 @@ personality = st.sidebar.selectbox(
         "A fitness freak who does exercise the whole day"
     ]
 )
+if personality == "Pro CSE student":
+    bot_avatar = "😎"
+elif personality == "Therapist":
+    bot_avatar = "🤔"
+elif personality == "Angry man who doesn't care about your feelings and says harsh truth in your face":
+    bot_avatar = "😡"
+elif personality == "A student who has exam in 1 hour and he hasn't studied anything":
+    bot_avatar = "😱"
+elif personality == "A man who is sick of his life and want to die":
+    bot_avatar = "😭"
+elif personality == "A fitness freak who does exercise the whole day":
+    bot_avatar = "💪"
+else:
+    bot_avatar = "🤖"
 
 # Intensity
 intensity = st.sidebar.slider("Intensity Level", min_value=1, max_value=10, value=5 )
@@ -123,5 +137,5 @@ if user_msg:
     with st.chat_message("user"):
         st.write(user_msg)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar = bot_avatar):
         st.write(reply)
