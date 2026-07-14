@@ -55,8 +55,8 @@ response_length = st.selectbox(
 
 response_value = {
     "Short": "Maximum 2-3 sentences",
-    "Medium": "",
-    "Detailed": "",
+    "Medium": "7-10 sentence",
+    "Detailed": "30+ sentence",
 }
 
 if "messages" not in st.session_state:
@@ -86,9 +86,9 @@ if show_history:
                 """
             )
 
-user_msg = st.chat_input("What do you want to say...")
+user_msg = st.text_input("What do you want to say...")
 
-if user_msg:
+if st.button("Send") and user_msg:
     # Store msg
     st.session_state.messages.append(
         {
