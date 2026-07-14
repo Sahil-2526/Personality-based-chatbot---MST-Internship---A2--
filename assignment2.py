@@ -59,79 +59,15 @@ response_value = {
     "Detailed": "30+ sentences"
 }
 
-
-if "all_chats" not in st.session_state:
-    st.session_state.all_chats = {}
-
-if personality not in st.session_state.all_chats:
-    st.session_state.all_chats[personality] = []
-
-messages = st.session_state.all_chats[personality]
-
-# Clear Chat
-if st.sidebar.button("Clear Chat History"):
-    st.session_state.all_chats = {}
-    st.rerun()
-
-# Chat History
-
-show_history = st.sidebar.checkbox("Show Previous Chats")
-
-if show_history:
-    st.sidebar.subheader("Previous Chats")
-
-    if not any(st.session_state.all_chats.values()):
-        st.sidebar.write("No chats yet.")
-    else:
-        for personality_name, chat in st.session_state.all_chats.items():
-            for msg in chat:
-                role = "You" if msg["role"] == "user" else "ChatBot"
-                st.sidebar.markdown(
-                    f"""
-                        **{role}**
-                        **Personality:** {personality_name}
-                        **Message:** {msg['content']}
-                        ---
-                    """
-                )
-
-# Display Chat
-for msg in messages:
-    if msg["role"] == "user":
-        with st.chat_message("user"):
-            st.write(msg["content"])
-    else:
-        with st.chat_message(
-            "assistant",
-            avatar=msg.get("avatar", "🤖")
-        ):
-            st.write(msg["content"])
-
 # Input chat
-user_msg = st.chat_input("What do you want to say?")
+user_msg = st.text_input("What do you want to say . . .")
 
-if user_msg:
-
-    # Store msg
-    messages.append(
-        {
-            "role": "user",
-            "personality": personality,
-            "content": user_msg
-        }
-    )
-
-    # Conco history in one str
-    conversation = ""
-    for msg in messages:
-        conversation += f"{msg['role']}: {msg['content']}\n"
-
+if st.button("Send") and user_msg:
     # Prompt
     ai_instructions = f"""
         You are acting as {personality}.
         Intensity Level: {intensity}/10.
         Response Length: {response_value[response_length]}
-        Conversation so far: {conversation}
         Respond naturally to the latest user message: {user_msg}
     """
 
@@ -144,15 +80,9 @@ if user_msg:
 
     reply = response.text
 
-    # Store assistant response
-    messages.append(
-        {
-            "role": "assistant",
-            "personality": personality,
-            "avatar": bot_avatar,
-            "content": reply
-        }
-    )
 
-    # Refresh
-    st.rerun()
+    with st.chat_message("user"):
+        st.write(user_msg)
+
+    with st.chat_message("assistant", avatar=bot_avatar):
+        st.write(reply)

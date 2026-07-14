@@ -103,10 +103,8 @@ for msg in st.session_state.messages:
         ):
             st.write(msg["content"])
 
-# Input chat
-user_msg = st.chat_input("What do you want to say?")
-
-if user_msg:
+# Input Chat
+if user_msg := st.chat_input("What do you want to say?"):
 
     # Store msg
     st.session_state.messages.append(
@@ -117,12 +115,14 @@ if user_msg:
         }
     )
 
-    # Conco history in one str
+    # Convo history in one str
     conversation = ""
-    conversation += (
-        f"[{msg.get('personality', 'Unknown')}] "
-        f"{msg['role']}: {msg['content']}\n"
-    )
+
+    for msg in st.session_state.messages:
+        conversation += (
+            f"[{msg.get('personality', 'Unknown')}] "
+            f"{msg['role']}: {msg['content']}\n"
+        )
 
     # Prompt
     ai_instructions = f"""

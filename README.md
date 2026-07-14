@@ -46,5 +46,7 @@ streamlit run main.py
 ```
 
 ### Result
-
-<img width="1919" height="1076" alt="Project Result" src="Result.png" />
+Assignment - 2
+<img width="1919" height="1076" alt="Project Result" src="Result2.png" />
+Assignment - 3
+<img width="1919" height="1076" alt="Project Result" src="Result3.png" />
